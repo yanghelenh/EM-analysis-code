@@ -361,6 +361,9 @@ dng13l_monoCat = [67; 0];
 
 allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
 
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
 % names for DNs
 DNnames = {'DNa02', 'DNg13'};
 
@@ -374,6 +377,17 @@ xticklabels(DNnames);
 legend(outCatNames);
 
 ylabel('Number of neurons');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of neurons');
 
 
 % of leg neurons, categories
@@ -389,6 +403,9 @@ dng13l_monoCat = [2; 39; 10; 5; 9; 2];
 
 allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
 
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
 % names for DNs
 DNnames = {'DNa02', 'DNg13'};
 
@@ -402,6 +419,17 @@ xticklabels(DNnames);
 legend(outCatNames);
 
 ylabel('Number of neurons');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of neurons');
 
 
 % of leg neurons, categories by neuromere
@@ -416,6 +444,9 @@ dng13l_monoCat = [30; 21; 16];
 
 allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
 
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
 % names for DNs
 DNnames = {'DNa02', 'DNg13'};
 
@@ -429,6 +460,17 @@ xticklabels(DNnames);
 legend(outCatNames);
 
 ylabel('Number of neurons');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of neurons');
 
 
 % of wing neurons, categories
@@ -444,6 +486,9 @@ dng13l_monoCat = [0; 0; 0; 0; 0; 0];
 
 allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
 
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
 % names for DNs
 DNnames = {'DNa02', 'DNg13'};
 
@@ -457,6 +502,17 @@ xticklabels(DNnames);
 legend(outCatNames);
 
 ylabel('Number of neurons');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of neurons');
 
 
 
@@ -683,7 +739,7 @@ title(ttlStr);
 
 %% plot subgraph: motor neurons a02
 % Disynaptic connections to MN only (hide connections b/w local neurons)
-lWidths = 10*t1MNa02GraphDi.Edges.NumSyn/max(t1MNa02GraphDi.Edges.NumSyn);
+lWidths = 4*t1MNa02GraphDi.Edges.NumSyn/max(t1MNa02GraphDi.Edges.NumSyn);
 figure;
 % plot(connGraph,'NodeLabel',connGraph.Nodes.Whimsy,'EdgeLabel',...
 %     connGraph.Edges.NumSyn, 'LineWidth',lWidths);
@@ -719,7 +775,7 @@ title(ttlStr);
 
 %% plot subgraph: motor neurons g13
 % Disynaptic connections to MN only (hide connections b/w local neurons)
-lWidths = 10*t1MNg13GraphDi.Edges.NumSyn/max(t1MNg13GraphDi.Edges.NumSyn);
+lWidths = 4*t1MNg13GraphDi.Edges.NumSyn/max(t1MNg13GraphDi.Edges.NumSyn);
 figure;
 % plot(connGraph,'NodeLabel',connGraph.Nodes.Whimsy,'EdgeLabel',...
 %     connGraph.Edges.NumSyn, 'LineWidth',lWidths);
