@@ -43,6 +43,37 @@ dng13rNumSyn = str2double(dng13rCSV(:,2));
 dng13rcat = dng13rCSV(:,15);
 
 
+%% get shared inputs - synapse counts
+dna02dng13Lshared = intersect(dna02lNames, dng13lNames);
+dna02dng13Rshared = intersect(dna02rNames, dng13rNames);
+
+sharedLDNa02syn = [];
+sharedLDNg13syn = [];
+for i = 1:length(dna02dng13Lshared)
+    sharedLDNa02syn(i) = dna02lNumSyn(strcmpi(dna02dng13Lshared{i},dna02lNames));
+    sharedLDNg13syn(i) = dng13lNumSyn(strcmpi(dna02dng13Lshared{i},dng13lNames));
+end
+
+sharedRDNa02syn = [];
+sharedRDNg13syn = [];
+for i = 1:length(dna02dng13Rshared)
+    sharedRDNa02syn(i) = dna02rNumSyn(strcmpi(dna02dng13Rshared{i},dna02rNames));
+    sharedRDNg13syn(i) = dng13rNumSyn(strcmpi(dna02dng13Rshared{i},dng13rNames));
+end
+
+
+% print some numbers to screen (accounts for flip)
+fprintf('DNa02 left num syn: %d\n', sum(dna02rNumSyn));
+fprintf('DNg13 left num syn: %d\n', sum(dng13rNumSyn));
+fprintf('DNa02 left num syn shared: %d\n', sum(sharedRDNa02syn));
+fprintf('DNg13 left num syn shared: %d\n', sum(sharedRDNg13syn));
+
+% print some numbers to screen (accounts for flip)
+fprintf('DNa02 right num syn: %d\n', sum(dna02lNumSyn));
+fprintf('DNg13 right num syn: %d\n', sum(dng13lNumSyn));
+fprintf('DNa02 right num syn shared: %d\n', sum(sharedLDNa02syn));
+fprintf('DNg13 right num syn shared: %d\n', sum(sharedLDNg13syn));
+
 %% get shared inputs
 dna02dng13Lshared = intersect(dna02lNames, dng13lNames);
 dna02dng13Rshared = intersect(dna02rNames, dng13rNames);
@@ -111,6 +142,59 @@ xticklabels(DNnames);
 legend(inCatNames);
 
 ylabel('Percent of neurons');
+
+%% get bar plots for categories of input neurons - by synapse count
+
+% category names
+inCatNames = {'CX', 'superior brain', 'visual', 'AN', 'DN', 'motor'};
+
+dna02l_monoCat = zeros(length(inCatNames),1);
+dna02r_monoCat =  zeros(length(inCatNames),1);
+
+dng13l_monoCat = zeros(length(inCatNames),1);
+dng13r_monoCat = zeros(length(inCatNames),1);
+
+% loop through all categories, get counts
+for i = 1:length(inCatNames)
+    dna02l_monoCat(i) = sum(dna02lNumSyn(strcmpi(dna02lcat,inCatNames{i})));
+    dna02r_monoCat(i) = sum(dna02rNumSyn(strcmpi(dna02rcat, inCatNames{i})));
+
+    dng13l_monoCat(i) = sum(dng13lNumSyn(strcmpi(dng13lcat, inCatNames{i})));
+    dng13r_monoCat(i) = sum(dng13rNumSyn(strcmpi(dng13rcat, inCatNames{i})));
+end
+
+allDNs_monoCat = [dna02l_monoCat, dna02r_monoCat, ...
+    dng13l_monoCat, dng13r_monoCat];
+
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dna02r_monoCat/sum(dna02r_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat),...
+    dng13r_monoCat/sum(dng13r_monoCat)] * 100;
+
+% names for DNs - this flips to account for brain flip
+DNnames = {'DNa02 right', 'DNa02 left', 'DNg13 right', 'DNg13 left'};
+
+% plot stacked bar plot - neuron counts
+figure;
+
+bar(allDNs_monoCat', 'stacked');
+
+xticklabels(DNnames);
+
+legend(inCatNames);
+
+ylabel('Number of synapses');
+
+% plot stacked bar plot - normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(inCatNames);
+
+ylabel('Percent of synapses');
 
 %% generate digraph
 

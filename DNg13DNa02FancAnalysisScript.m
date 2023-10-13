@@ -514,7 +514,175 @@ legend(outCatNames);
 
 ylabel('Percent of neurons');
 
+%% stacked barplots for categories of monosynaptic outputs - synapse counts
+% Note, here, just entering the numbers manually for plotting, from the
+%  google spreadsheets. Easier but could write code to automatically read
+%  those spreadsheets
 
+% wing vs. leg circuitry
+% category names
+outCatNames = {'Leg', 'Wing'};
+
+% counts for each category, indices match outCatNames
+% DN variable names match spreadsheet names
+dna02l_monoCat = [1833; 645];
+
+dng13l_monoCat = [2131; 0];
+
+allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
+
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
+% names for DNs
+DNnames = {'DNa02', 'DNg13'};
+
+% plot stacked bar plot
+figure;
+
+bar(allDNs_monoCat', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Number of synapses');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of synapses');
+
+
+% of leg neurons, categories
+% category names
+outCatNames = {'MN', 'Local premotor', 'Local', 'Intersegmental', ...
+    'Intersegmental premotor', 'AN'};
+
+% counts for each category, indices match outCatNames
+% DN variable names match spreadsheet names
+dna02l_monoCat = [268; 1244; 95; 74; 154; 18];
+
+dng13l_monoCat = [81; 1233; 470; 73; 248; 26];
+
+allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
+
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
+% names for DNs
+DNnames = {'DNa02', 'DNg13'};
+
+% plot stacked bar plot
+figure;
+
+bar(allDNs_monoCat', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Number of neurons');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of synapses');
+
+
+% of leg neurons, categories by neuromere
+% category names
+outCatNames = {'T1', 'T2', 'T3'};
+
+% counts for each category, indices match outCatNames
+% DN variable names match spreadsheet names
+dna02l_monoCat = [794; 612; 427];
+
+dng13l_monoCat = [800; 903; 428];
+
+allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
+
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
+% names for DNs
+DNnames = {'DNa02', 'DNg13'};
+
+% plot stacked bar plot
+figure;
+
+bar(allDNs_monoCat', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Number of synapses');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of synapses');
+
+
+% of wing neurons, categories
+% category names
+outCatNames = {'Wing MN', 'Haltere MN', 'Neck MN', 'AN', ...
+    'Unilateral', 'Bilateral'};
+
+% counts for each category, indices match outCatNames
+% DN variable names match spreadsheet names
+dna02l_monoCat = [163; 44; 23; 85; 22; 308];
+
+dng13l_monoCat = [0; 0; 0; 0; 0; 0];
+
+allDNs_monoCat = [dna02l_monoCat, dng13l_monoCat];
+
+allDNs_monoCatNorm = [dna02l_monoCat/sum(dna02l_monoCat), ...
+    dng13l_monoCat/sum(dng13l_monoCat)];
+
+% names for DNs
+DNnames = {'DNa02', 'DNg13'};
+
+% plot stacked bar plot
+figure;
+
+bar(allDNs_monoCat', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Number of neurons');
+
+% plot stacked bar plot, normalized
+figure;
+
+bar(allDNs_monoCatNorm', 'stacked');
+
+xticklabels(DNnames);
+
+legend(outCatNames);
+
+ylabel('Percent of neurons');
 
 %% get graph only for T1 MN
 
